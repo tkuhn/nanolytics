@@ -22,7 +22,7 @@ import com.beust.jcommander.ParameterException;
 public class Run {
 
 	@com.beust.jcommander.Parameter(description = "nanopubs", required = true)
-	private List<String> nanopubIdentifiers = new ArrayList<String>();
+	private List<String> nanopubRefs = new ArrayList<String>();
 
 	public static void main(String[] args) throws IOException, OpenRDFException, MalformedNanopubException {
 		Run obj = new Run();
@@ -48,7 +48,7 @@ public class Run {
 	}
 
 	private void init() throws IOException, OpenRDFException, MalformedNanopubException {
-		for (String s : nanopubIdentifiers) {
+		for (String s : nanopubRefs) {
 			if (s.matches("^https?://.*")) {
 				nanopubs.add(new NanopubImpl(new URL(s)));
 			} else if (TrustyUriUtils.isPotentialArtifactCode(s)) {
