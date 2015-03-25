@@ -103,3 +103,25 @@ Intermixed sources:
     o o      o  3 primary sources
     | |      |
     o o      o  3 primary agents
+
+
+### Combined View
+
+               v---------- 5 nanopublications
+                  v------- 3 sources
+                     v---- 2 primary sources 
+                        v- 2 primary agents
+
+    X . . . .  o--o--o--o
+    . X . . .  o--'  |
+    . . . X .  o--o--'
+    . . . . X  o--'
+    . . X . .  o--o--o--o
+
+    o o o o o  5 nanopublications
+    | | | | |
+    o o o o o  5 processes
+    | |/  | |
+    o o   o o  4 agents
+    | |__/  |
+    o o     o  3 codebases
