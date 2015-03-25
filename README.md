@@ -29,7 +29,7 @@ Bots and humans:
     |/   |
     o    o  2 agents (1 bot; 1 human)
     |
-    o      1 codebase: https://github.com/example/my-bot
+    o       1 codebase: https://github.com/example/my-bot
 
 Many nanopubs:
 
@@ -82,10 +82,10 @@ Unknown primary sources:
 
 Intermixed sources:
 
-    o o o o  o  5 nanopublications
+    ■ ■ ■ ■  ■  5 nanopublications
     | | | |  |
-    o o o o  o  5 sources
+    □ □ □ □  □  5 sources
     XXXXXXX  |
-    o o      o  3 primary sources
+    □ □      □  3 primary sources
     | |      |
     o o      o  3 primary agents
