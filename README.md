@@ -42,6 +42,20 @@ Many nanopubs:
     o                  o    o     3 codebases
 
 
+### Version-Focused View
+
+The version-focused view is like the agent-focused one, with the agent layer
+replaced by versions:
+
+    o o o  o  3 nanopublications
+    | | |  |
+    o o o  o  3 processes
+    |/  |  |
+    o   o  o  3 versions
+    |__/   |
+    o      o  2 codebases
+
+
 ### Data-Focused View
 
 Simple:
@@ -82,10 +96,10 @@ Unknown primary sources:
 
 Intermixed sources:
 
-    ■ ■ ■ ■  ■  5 nanopublications
+    o o o o  o  5 nanopublications
     | | | |  |
-    □ □ □ □  □  5 sources
+    o o o o  o  5 sources
     XXXXXXX  |
-    □ □      □  3 primary sources
+    o o      o  3 primary sources
     | |      |
     o o      o  3 primary agents
