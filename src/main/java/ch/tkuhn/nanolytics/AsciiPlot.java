@@ -4,17 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ProvPlot {
+public class AsciiPlot {
 
 	private ProvNetwork provNetwork;
+	private List<ProvTrail> provTrails;
+	private String plotString;
 
-	public ProvPlot(ProvNetwork provNetwork) {
+	public AsciiPlot(ProvNetwork provNetwork) {
 		this.provNetwork = provNetwork;
+		init();
 	}
 
-	public String getAsciiPlot() {
-		List<ProvTrail> provTrails = new ArrayList<>(provNetwork.getTrails());
+	private void init() {
+		provTrails = new ArrayList<>(provNetwork.getTrails());
 		Collections.sort(provTrails);
+	}
+
+	public String getPlotString() {
+		if (plotString == null) {
+			makePlot();
+		}
+		return plotString;
+	}
+
+	private void makePlot() {
 		String[] plot = new String[provNetwork.getTrailLength()*2 - 1];
 		for (int i = 0 ; i < plot.length ; i++) {
 			plot[i] = "";
@@ -54,7 +67,7 @@ public class ProvPlot {
 			}
 			previous = t;
 		}
-		String plotString = "";
+		plotString = "";
 		for (int i = 0 ; i < plot.length ; i++) {
 			if (i % 2 == 0) {
 				int p = i/2;
@@ -63,7 +76,6 @@ public class ProvPlot {
 				plotString += plot[i] + "\n";
 			}
 		}
-		return plotString;
 	}
 
 }
