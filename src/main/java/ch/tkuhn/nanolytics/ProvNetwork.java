@@ -2,7 +2,6 @@ package ch.tkuhn.nanolytics;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +42,7 @@ public class ProvNetwork {
 			queryString += line + "\n";
 		}
 		scanner.close();
+		varNames = ImmutableList.copyOf(varNames);
 		TupleQuery query = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 		TupleQueryResult result = query.evaluate();
 		while (result.hasNext()) {
@@ -57,11 +57,19 @@ public class ProvNetwork {
 			}
 			trails.add(new ProvTrail(uris));
 		}
-		Collections.sort(trails);
+		trails = ImmutableList.copyOf(trails);
 	}
 
 	public List<ProvTrail> getTrails() {
-		return ImmutableList.copyOf(trails);
+		return trails;
+	}
+
+	public List<String> getVarNames() {
+		return varNames;
+	}
+
+	public int getTrailLength() {
+		return varNames.size();
 	}
 
 }

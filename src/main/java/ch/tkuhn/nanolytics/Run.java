@@ -79,9 +79,8 @@ public class Run {
 
 	public void run() throws IOException, OpenRDFException {
 		ProvNetwork n = new ProvNetwork(conn, "agent-prov");
-		for (ProvTrail t : n.getTrails()) {
-			System.err.println(t);
-		}
+		ProvPlot p = new ProvPlot(n);
+		System.err.println(p.getAsciiPlot());
 	}
 
 }
