@@ -1,0 +1,14 @@
+prefix np: <http://www.nanopub.org/nschema#>
+prefix prov: <http://www.w3.org/ns/prov#>
+
+select ?nanopub ?botProcess ?botInstance ?botCodebase {
+  graph ?headGraph {
+    ?nanopub a np:Nanopublication .
+    ?nanopub np:hasPublicationInfo ?publicationInfoGraph .
+  }
+  graph ?publicationInfoGraph {
+    ?nanopub prov:wasGeneratedBy ?botProcess .
+    ?botProcess prov:wasAssociatedWith ?botInstance .
+    ?botInstance prov:specializationOf ?botCodebase .
+  }
+}
