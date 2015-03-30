@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import net.trustyuri.TrustyUriUtils;
 
@@ -17,10 +16,6 @@ import org.nanopub.NanopubImpl;
 import org.nanopub.NanopubUtils;
 import org.nanopub.extra.server.GetNanopub;
 import org.openrdf.OpenRDFException;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.QueryLanguage;
-import org.openrdf.query.TupleQuery;
-import org.openrdf.query.TupleQueryResult;
 import org.openrdf.repository.sail.SailRepository;
 import org.openrdf.repository.sail.SailRepositoryConnection;
 import org.openrdf.sail.memory.MemoryStore;
@@ -83,34 +78,10 @@ public class Run {
 	}
 
 	public void run() throws IOException, OpenRDFException {
-		Scanner scanner = new Scanner(getQueryFile("agent-prov"));
-		String queryString = "";
-		List<String> varNames = new ArrayList<>();
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			if (line.toLowerCase().startsWith("select ")) {
-				for (String token : line.split("\\s+")) {
-					if (token.startsWith("?")) {
-						varNames.add(token.substring(1));
-					}
-				}
-			}
-			queryString += line + "\n";
+		ProvNetwork n = new ProvNetwork(conn, "agent-prov");
+		for (ProvTrail t : n.getTrails()) {
+			System.err.println(t);
 		}
-		scanner.close();
-		TupleQuery query = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-		TupleQueryResult result = query.evaluate();
-		while (result.hasNext()) {
-			System.err.println("---");
-			BindingSet bs = result.next();
-			for (String n : varNames) {
-				System.err.println(n + " " + bs.getBinding(n));
-			}
-		}
-	}
-
-	private static File getQueryFile(String dataset) {
-		return new File(Run.class.getClassLoader().getResource("queries/" + dataset + ".sparql").getFile());
 	}
 
 }
