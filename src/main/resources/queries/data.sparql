@@ -1,0 +1,15 @@
+prefix np: <http://www.nanopub.org/nschema#>
+prefix prov: <http://www.w3.org/ns/prov#>
+
+select ?nanopub ?directSource ?source ?agent {
+  graph ?headGraph {
+    ?nanopub a np:Nanopublication .
+    ?nanopub np:hasAssertion ?assertionGraph .
+    ?nanopub np:hasProvenance ?provenanceGraph .
+  }
+  graph ?provenanceGraph {
+    ?assertionGraph prov:wasDerivedFrom ?directSource .
+    ?directSource prov:wasDerivedFrom ?source .
+    ?source prov:wasAttributedTo ?agent .
+  }
+}

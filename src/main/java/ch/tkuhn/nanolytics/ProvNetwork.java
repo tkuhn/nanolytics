@@ -49,11 +49,15 @@ public class ProvNetwork {
 			BindingSet bs = result.next();
 			List<URI> uris = new ArrayList<>();
 			for (String n : varNames) {
-				Value v = bs.getBinding(n).getValue();
-				if (!(v instanceof URI)) {
-					throw new RuntimeException("Not a URI: " + v);
+				if (bs.hasBinding(n)) {
+					Value v = bs.getBinding(n).getValue();
+					if (!(v instanceof URI)) {
+						throw new RuntimeException("Not a URI: " + v);
+					}
+					uris.add((URI) v);
+				} else {
+					uris.add(null);
 				}
-				uris.add((URI) v);
 			}
 			trails.add(new ProvTrail(uris));
 		}

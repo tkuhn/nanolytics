@@ -44,6 +44,7 @@ public class AsciiPlot {
 			ProvTrail previous = null;
 			for (ProvTrail t : provTrails) {
 				URI uri = t.getUri(l);
+				if (uri == null) continue;
 				if (makeNewNode(t, previous, l)) {
 					if (r.contains(uri)) {
 						mr.add(uri);
@@ -66,8 +67,25 @@ public class AsciiPlot {
 			boolean attached = false;
 			for (int i = 0 ; i < plot.length ; i = i+2) {
 				int l = i/2;
-				if (!attached && t.getLength() > l) {
-					if (!makeNewNode(t, previous, l)) {
+				if (!attached && t.getLength() > l && !hasEnded(t, l)) {
+					if (makeNewNode(t, previous, l)) {
+						if (i > 0) plot[i-1] += "  ";
+						URI uri = t.getUri(l);
+						if (uri == null) {
+							plot[i] += "  ";
+						} else {
+							for (int j = i-1 ; j >= 0 ; j--) {
+								if (plot[j].endsWith(" ")) {
+									plot[j] = plot[j].substring(0, plot[j].length()-1) + "|";
+								}
+							}
+							if (multiRefs.get(l).contains(uri)) {
+								plot[i] += " c";
+							} else {
+								plot[i] += " o";
+							}
+						}
+					} else {
 						String s = plot[i-1];
 						while (s.endsWith(" ")) {
 							s = s.replaceFirst(" ( *)$", "_$1");
@@ -75,14 +93,6 @@ public class AsciiPlot {
 						plot[i-1] = s + "/ ";
 						plot[i] += "  ";
 						attached = true;
-					} else {
-						if (i > 0) plot[i-1] += " |";
-						URI uri = t.getUri(l);
-						if (multiRefs.get(l).contains(uri)) {
-							plot[i] += " c";
-						} else {
-							plot[i] += " o";
-						}
 					}
 				} else {
 					if (i > 0) plot[i-1] += "  ";
@@ -103,17 +113,28 @@ public class AsciiPlot {
 	}
 
 	private boolean makeNewNode(ProvTrail thisTrail, ProvTrail previousTrail, int level) {
-		boolean makeNewNode = true;
-		if (previousTrail != null) {
-			makeNewNode = false;
+		if (previousTrail == null) {
+			return true;
+		} else {
 			for (int j = level ; j < thisTrail.getLength() ; j++) {
-				if (!thisTrail.getUri(j).equals(previousTrail.getUri(j))) {
-					makeNewNode = true;
-					break;
+				URI thisUri = thisTrail.getUri(j);
+				URI prevUri = previousTrail.getUri(j);
+				if (thisUri == null || prevUri == null) continue;
+				if (thisUri == null || prevUri == null || !thisUri.equals(prevUri)) {
+					return true;
 				}
 			}
 		}
-		return makeNewNode;
+		return false;
+	}
+
+	private boolean hasEnded(ProvTrail thisTrail, int level) {
+		for (int j = level ; j < thisTrail.getLength() ; j++) {
+			if (thisTrail.getUri(j) != null) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

@@ -32,6 +32,11 @@ public class ProvTrail implements Comparable<ProvTrail> {
 		int i = this.getLength();
 		while (i > 0) {
 			i--;
+			URI thisUri = this.getUri(i);
+			URI otherUri = other.getUri(i);
+			if (thisUri == null && otherUri == null) continue;
+			if (thisUri == null) return 1;
+			if (otherUri == null) return -1;
 			int c = this.getUri(i).toString().compareTo(other.getUri(i).toString());
 			if (c != 0) return c;
 		}
