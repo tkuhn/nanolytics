@@ -27,10 +27,10 @@ public class ProvPlot {
 				if (!attached && t.getLength() > p) {
 					if (previous != null && t.getUri(p).equals(previous.getUri(p))) {
 						String s = plot[i-1];
-						if (s.endsWith(" ")) {
-							plot[i-1] = s.substring(0, s.length()-1) + "_";
+						while (s.endsWith(" ")) {
+							s = s.replaceFirst(" ( *)$", "_$1");
 						}
-						plot[i-1] += "/ ";
+						plot[i-1] = s + "/ ";
 						plot[i] += "  ";
 						attached = true;
 					} else {

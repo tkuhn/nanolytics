@@ -1,0 +1,300 @@
+@prefix : <http://example.org/nanolytics-examples/nanopub1> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess34278463 .
+	
+	ex:botProcess34278463 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotA .
+	
+	ex:botInstance_BotA prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub2> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess34278463 .
+	
+	ex:botProcess34278463 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotA .
+	
+	ex:botInstance_BotA prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub2b> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess34278463 .
+	
+	ex:botProcess34278463 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotA .
+	
+	ex:botInstance_BotA prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub3> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess2389374 .
+	
+	ex:botProcess2389374 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotA .
+	
+	ex:botInstance_BotA prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub3b> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess2389374 .
+	
+	ex:botProcess2389374 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotA .
+	
+	ex:botInstance_BotA prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub4> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess9238793 .
+	
+	ex:botProcess9238793 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotB .
+	
+	ex:botInstance_BotB prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}
+
+@prefix : <http://example.org/nanolytics-examples/nanopub5> .
+@prefix ex: <http://example.org/nanolytics-examples/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :publicationInfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	ex:thing1 ex:causes ex:effectA .
+}
+
+:provenance {
+	:assertion prov:wasDerivedFrom ex:dataset1 .
+	
+	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	
+	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
+}
+
+:publicationInfo {
+	: dct:created "2015-03-30T00:00:00Z"^^xsd:dateTime ;
+		prov:wasGeneratedBy ex:botProcess3472981 .
+	
+	ex:botProcess3472981 prov:used ex:exbot_v001 ;
+		prov:wasAssociatedWith ex:botInstance_BotB .
+	
+	ex:botInstance_BotB prov:specializationOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+	
+	ex:exbot_v001 dct:isVersionOf ex:exbot_codebase ;
+		prov:wasAttributedTo orcid:0000-0002-1267-0234 .
+}

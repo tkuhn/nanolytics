@@ -80,7 +80,7 @@ public class Run {
 	public void run() throws IOException, OpenRDFException {
 		ProvNetwork n = new ProvNetwork(conn, "agent-prov");
 		ProvPlot p = new ProvPlot(n);
-		System.err.println(p.getAsciiPlot());
+		System.err.print(p.getAsciiPlot());
 	}
 
 }
