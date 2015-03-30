@@ -44,17 +44,7 @@ public class AsciiPlot {
 			ProvTrail previous = null;
 			for (ProvTrail t : provTrails) {
 				URI uri = t.getUri(l);
-				boolean isNewNode = true;
-				if (previous != null) {
-					isNewNode = false;
-					for (int j = l ; j < t.getLength() ; j++) {
-						if (!t.getUri(j).equals(previous.getUri(j))) {
-							isNewNode = true;
-							break;
-						}
-					}
-				}
-				if (isNewNode) {
+				if (makeNewNode(t, previous, l)) {
 					if (r.contains(uri)) {
 						mr.add(uri);
 					} else {
@@ -77,17 +67,7 @@ public class AsciiPlot {
 			for (int i = 0 ; i < plot.length ; i = i+2) {
 				int l = i/2;
 				if (!attached && t.getLength() > l) {
-					boolean doAttach = false;
-					if (previous != null) {
-						doAttach = true;
-						for (int j = l ; j < t.getLength() ; j++) {
-							if (!t.getUri(j).equals(previous.getUri(j))) {
-								doAttach = false;
-								break;
-							}
-						}
-					}
-					if (doAttach) {
+					if (!makeNewNode(t, previous, l)) {
 						String s = plot[i-1];
 						while (s.endsWith(" ")) {
 							s = s.replaceFirst(" ( *)$", "_$1");
@@ -120,6 +100,20 @@ public class AsciiPlot {
 				plotString += plot[i] + "\n";
 			}
 		}
+	}
+
+	private boolean makeNewNode(ProvTrail thisTrail, ProvTrail previousTrail, int level) {
+		boolean makeNewNode = true;
+		if (previousTrail != null) {
+			makeNewNode = false;
+			for (int j = level ; j < thisTrail.getLength() ; j++) {
+				if (!thisTrail.getUri(j).equals(previousTrail.getUri(j))) {
+					makeNewNode = true;
+					break;
+				}
+			}
+		}
+		return makeNewNode;
 	}
 
 }
