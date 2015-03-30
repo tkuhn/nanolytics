@@ -25,7 +25,17 @@ public class ProvPlot {
 			for (int i = 0 ; i < plot.length ; i = i+2) {
 				int p = i/2;
 				if (!attached && t.getLength() > p) {
-					if (previous != null && t.getUri(p).equals(previous.getUri(p))) {
+					boolean doAttach = false;
+					if (previous != null) {
+						doAttach = true;
+						for (int j = p ; j < t.getLength() ; j++) {
+							if (!t.getUri(j).equals(previous.getUri(j))) {
+								doAttach = false;
+								break;
+							}
+						}
+					}
+					if (doAttach) {
 						String s = plot[i-1];
 						while (s.endsWith(" ")) {
 							s = s.replaceFirst(" ( *)$", "_$1");

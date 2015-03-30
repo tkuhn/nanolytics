@@ -21,12 +21,16 @@ import org.openrdf.repository.sail.SailRepositoryConnection;
 import org.openrdf.sail.memory.MemoryStore;
 
 import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
 public class Run {
 
 	@com.beust.jcommander.Parameter(description = "nanopubs", required = true)
 	private List<String> nanopubRefs = new ArrayList<String>();
+
+	@Parameter(names = "-p", description = "Provenance query to execute")
+	private String provQuery = "agent";
 
 	public static void main(String[] args) throws IOException, OpenRDFException, MalformedNanopubException {
 		Run obj = new Run();
@@ -78,7 +82,7 @@ public class Run {
 	}
 
 	public void run() throws IOException, OpenRDFException {
-		ProvNetwork n = new ProvNetwork(conn, "agent-prov");
+		ProvNetwork n = new ProvNetwork(conn, provQuery);
 		ProvPlot p = new ProvPlot(n);
 		System.err.print(p.getAsciiPlot());
 	}

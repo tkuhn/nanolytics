@@ -27,7 +27,7 @@ public class ProvNetwork {
 
 	private void init(RepositoryConnection conn, String queryName) throws IOException, OpenRDFException {
 		trails = new ArrayList<>();
-		Scanner scanner = new Scanner(NanolyticsUtils.getQueryFile("agent-prov"));
+		Scanner scanner = new Scanner(NanolyticsUtils.getQueryFile(queryName));
 		String queryString = "";
 		varNames = new ArrayList<>();
 		while (scanner.hasNextLine()) {
