@@ -2,13 +2,18 @@ package ch.tkuhn.nanolytics;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.openrdf.model.URI;
 
 public class AsciiPlot {
 
 	private ProvNetwork provNetwork;
 	private List<ProvTrail> provTrails;
 	private String plotString;
+	private List<Set<URI>> refs, multiRefs;
 
 	public AsciiPlot(ProvNetwork provNetwork) {
 		this.provNetwork = provNetwork;
@@ -22,9 +27,43 @@ public class AsciiPlot {
 
 	public String getPlotString() {
 		if (plotString == null) {
+			preparePlot();
 			makePlot();
 		}
 		return plotString;
+	}
+
+	private void preparePlot() {
+		refs = new ArrayList<Set<URI>>();
+		multiRefs = new ArrayList<Set<URI>>();
+		for (int l = 0 ; l < provNetwork.getTrailLength() ; l++) {
+			Set<URI> r = new HashSet<URI>();
+			Set<URI> mr = new HashSet<URI>();
+			refs.add(r);
+			multiRefs.add(mr);
+			ProvTrail previous = null;
+			for (ProvTrail t : provTrails) {
+				URI uri = t.getUri(l);
+				boolean isNewNode = true;
+				if (previous != null) {
+					isNewNode = false;
+					for (int j = l ; j < t.getLength() ; j++) {
+						if (!t.getUri(j).equals(previous.getUri(j))) {
+							isNewNode = true;
+							break;
+						}
+					}
+				}
+				if (isNewNode) {
+					if (r.contains(uri)) {
+						mr.add(uri);
+					} else {
+						r.add(uri);
+					}
+				}
+				previous = t;
+			}
+		}
 	}
 
 	private void makePlot() {
@@ -36,12 +75,12 @@ public class AsciiPlot {
 		for (ProvTrail t : provTrails) {
 			boolean attached = false;
 			for (int i = 0 ; i < plot.length ; i = i+2) {
-				int p = i/2;
-				if (!attached && t.getLength() > p) {
+				int l = i/2;
+				if (!attached && t.getLength() > l) {
 					boolean doAttach = false;
 					if (previous != null) {
 						doAttach = true;
-						for (int j = p ; j < t.getLength() ; j++) {
+						for (int j = l ; j < t.getLength() ; j++) {
 							if (!t.getUri(j).equals(previous.getUri(j))) {
 								doAttach = false;
 								break;
@@ -58,7 +97,12 @@ public class AsciiPlot {
 						attached = true;
 					} else {
 						if (i > 0) plot[i-1] += " |";
-						plot[i] += " o";
+						URI uri = t.getUri(l);
+						if (multiRefs.get(l).contains(uri)) {
+							plot[i] += " c";
+						} else {
+							plot[i] += " o";
+						}
 					}
 				} else {
 					if (i > 0) plot[i-1] += "  ";
@@ -71,7 +115,7 @@ public class AsciiPlot {
 		for (int i = 0 ; i < plot.length ; i++) {
 			if (i % 2 == 0) {
 				int p = i/2;
-				plotString += plot[i] + " " + provNetwork.getVarNames().get(p) + "\n";
+				plotString += plot[i] + "  " + refs.get(p).size() + " " + provNetwork.getVarNames().get(p) + "\n";
 			} else {
 				plotString += plot[i] + "\n";
 			}
