@@ -6,122 +6,12 @@ Analytics tools for nanopublications.
 _(this is work in progress...)_
 
 
-Cardinal Assertion Analytics: Design Sketches
----------------------------------------------
+Cardinal Assertion Analytics
+----------------------------
 
-### Agent-Focused View
+Examples:
 
-Simple:
-
-    o o  o  3 nanopublications
-    | |  |
-    o o  o  3 processes
-    |/   |
-    o    o  2 agents (2 bots)
-    |    |
-    o    o  2 codebases
-
-Bots and humans:
-
-    o o  o  3 nanopublications
-    | |  |
-    o o  |  2 processes
-    |/   |
-    o    o  2 agents (1 bot; 1 human)
-    |
-    o       1 codebase: https://github.com/example/my-bot
-
-Many nanopubs:
-
-    o o o o o o o o o  o o  o o  13 nanopublications
-    | | | | | | | | |  |/   | |
-    o o o o o o o o o  o    o o  12 processes
-    |/_/_/_/_/_/_/_/   |    |/
-    o                  o    o     3 agents (3 bots)
-    |                  |    |
-    o                  o    o     3 codebases
-
-
-### Version-Focused View
-
-The version-focused view is like the agent-focused one, with the agent layer
-replaced by versions:
-
-    o o o  o  3 nanopublications
-    | | |  |
-    o o o  o  3 processes
-    |/  |  |
-    o   o  o  3 versions
-    |__/   |
-    o      o  2 codebases
-
-
-### Data-Focused View
-
-Simple:
-
-    o o  o  3 nanopublications
-    | |  |
-    o o  o  3 sources
-    |/   |
-    o    o  2 primary sources
-    |    |
-    o    o  2 primary agents
-
-Long:
-
-    o o  o  3 nanopublications
-    | |  |
-    o o  o  3 sources
-    |/   |
-    o    |  1 intermediate source
-    |    |
-    o    |  1 intermediate source
-    |    |
-    o    |  1 intermediate source
-    |    |
-    o    o  2 primary sources
-    |    |
-    o    o  2 primary agents
-
-Unknown primary sources:
-
-    o o  o  3 nanopublications
-    | |  |
-    o o  o  3 sources
-    |/   |
-    o    ?  1 primary source
-    |
-    ?       0 primary agent
-
-Intermixed sources:
-
-    o o o o  o  5 nanopublications
-    | | | |  |
-    o o o o  o  5 sources
-    XXXXXXX  |
-    o o      o  3 primary sources
-    | |      |
-    o o      o  3 primary agents
-
-
-### Combined View
-
-               v---------- 5 nanopublications
-                  v------- 3 sources
-                     v---- 2 primary sources 
-                        v- 2 primary agents
-
-    X . . . .  o--o--o--o
-    . X . . .  o--'  |
-    . . . X .  o--o--'
-    . . . . X  o--'
-    . . X . .  o--o--o--o
-
-    o o o o o  5 nanopublications
-    | | | | |
-    o o o o o  5 processes
-    | |/  | |
-    o o   o o  4 agents
-    | |__/  |
-    o o     o  3 codebases
+- [Example 1](src/main/resources/examples/nanopubs1.txt)
+  (from [this file](src/main/resources/examples/nanopubs1.trig))
+- [Example 2](src/main/resources/examples/nanopubs2.txt)
+  (from [this file](src/main/resources/examples/nanopubs2.trig))

@@ -1,0 +1,58 @@
+ASCII plots for nanopubs1.trig
+
+agent plot:
+
+ o o o o o o o  7 nanopub
+ |/  |/_/  | |
+ o   o     o o  4 process
+ |__/      |/ 
+ o         o    2 agent
+ |________/   
+ o              1 codebase
+
+agent-version plot:
+
+ o o o o o o o  7 nanopub
+ |/  |/_/  | |
+ o   o     o o  4 process
+ |__/      |/ 
+ #         #    1 version
+ |         |  
+ o         o    2 agent
+ |________/   
+ o              1 codebase
+
+data plot:
+
+ o o o o o o o  7 nanopub
+ |/_/_/_/_/_/ 
+ o              1 directSource
+ |            
+ |              0 indirectSource
+ |            
+ o              1 source
+ |            
+ o              1 agent
+
+version-agent plot:
+
+ o o o o o o o  7 nanopub
+ |/  |/_/  | |
+ o   o     o o  4 process
+ |__/      |/ 
+ o         o    2 agent
+ |________/   
+ o              1 version
+ |            
+ o              1 codebase
+
+version plot:
+
+ o o o o o o o  7 nanopub
+ |/  |/_/  | |
+ o   o     o o  4 process
+ |__/_____/_/ 
+ o              1 version
+ |            
+ o              1 codebase
+

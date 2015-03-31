@@ -84,7 +84,7 @@ public class Run {
 	public void run() throws IOException, OpenRDFException {
 		ProvNetwork n = new ProvNetwork(conn, provQuery);
 		AsciiPlot p = new AsciiPlot(n);
-		System.err.print(p.getPlotString());
+		System.out.print(p.getPlotString());
 	}
 
 }

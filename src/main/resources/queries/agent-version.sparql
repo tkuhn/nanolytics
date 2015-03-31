@@ -8,10 +8,16 @@ select ?nanopub ?process ?version ?agent ?codebase {
     ?nanopub np:hasPublicationInfo ?publicationInfoGraph .
   }
   graph ?publicationInfoGraph {
-    ?nanopub prov:wasGeneratedBy ?process .
-    ?process prov:used ?version .
-    ?version dct:isVersionOf ?codebase .
-    ?process prov:wasAssociatedWith ?agent .
-    ?agent prov:specializationOf ?codebase .
+    {
+      ?nanopub prov:wasGeneratedBy ?process .
+      ?process prov:wasAssociatedWith ?agent .
+      ?agent prov:specializationOf ?codebase .
+      optional {
+        ?process prov:used ?version .
+        ?version dct:isVersionOf ?codebase .
+      }
+    } union {
+      ?nanopub prov:wasAttributedTo ?agent .
+    }
   }
 }

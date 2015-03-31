@@ -14,6 +14,7 @@ public class AsciiPlot {
 	private List<ProvTrail> provTrails;
 	private String plotString;
 	private List<Set<URI>> refs, multiRefs;
+	private Set<URI> globalRefs, globalMultiRefs;
 
 	public AsciiPlot(ProvNetwork provNetwork) {
 		this.provNetwork = provNetwork;
@@ -36,6 +37,8 @@ public class AsciiPlot {
 	private void preparePlot() {
 		refs = new ArrayList<Set<URI>>();
 		multiRefs = new ArrayList<Set<URI>>();
+		globalRefs = new HashSet<URI>();
+		globalMultiRefs = new HashSet<URI>();
 		for (int l = 0 ; l < provNetwork.getTrailLength() ; l++) {
 			Set<URI> r = new HashSet<URI>();
 			Set<URI> mr = new HashSet<URI>();
@@ -50,6 +53,11 @@ public class AsciiPlot {
 						mr.add(uri);
 					} else {
 						r.add(uri);
+					}
+					if (globalRefs.contains(uri)) {
+						globalMultiRefs.add(uri);
+					} else {
+						globalRefs.add(uri);
 					}
 				}
 				previous = t;
@@ -80,6 +88,8 @@ public class AsciiPlot {
 								}
 							}
 							if (multiRefs.get(l).contains(uri)) {
+								plot[i] += " #";
+							} else if (globalMultiRefs.contains(uri)) {
 								plot[i] += " c";
 							} else {
 								plot[i] += " o";
