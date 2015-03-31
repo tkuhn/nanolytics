@@ -2,7 +2,7 @@ prefix np: <http://www.nanopub.org/nschema#>
 prefix prov: <http://www.w3.org/ns/prov#>
 
 select ?nanopub ?directSource ?indirectSource ?primarySource ?primaryAgent where {
-  graph ?headGraph {
+  graph ?head {
     ?nanopub a np:Nanopublication .
     ?nanopub np:hasAssertion ?assertion .
     ?nanopub np:hasProvenance ?provenance .
