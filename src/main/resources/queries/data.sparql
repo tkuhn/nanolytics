@@ -1,23 +1,24 @@
 prefix np: <http://www.nanopub.org/nschema#>
 prefix prov: <http://www.w3.org/ns/prov#>
 
-select ?nanopub ?directSource ?indirectSource ?source ?agent {
+select ?nanopub ?directSource ?indirectSource ?primarySource ?primaryAgent {
   graph ?headGraph {
     ?nanopub a np:Nanopublication .
-    ?nanopub np:hasAssertion ?assertionGraph .
-    ?nanopub np:hasProvenance ?provenanceGraph .
+    ?nanopub np:hasAssertion ?assertion .
+    ?nanopub np:hasProvenance ?provenance .
   }
-  graph ?provenanceGraph {
-    ?assertionGraph prov:wasDerivedFrom* ?source .
+  graph ?provenance {
     optional {
-      ?assertionGraph prov:wasDerivedFrom ?directSource .
-      ?directSource prov:wasDerivedFrom+ ?source .
+      ?assertion prov:wasDerivedFrom* / prov:hadPrimarySource ?primarySource .
+      optional {
+        ?primarySource prov:wasAttributedTo ?primaryAgent .
+      }
     }
     optional {
-      ?assertionGraph prov:wasDerivedFrom ?directSource .
-      ?directSource prov:wasDerivedFrom ?indirectSource .
-      ?indirectSource prov:wasDerivedFrom+ ?source .
+      ?assertion prov:wasDerivedFrom ?directSource .
+      optional {
+        ?directSource prov:wasDerivedFrom ?indirectSource .
+      }
     }
-    ?source prov:wasAttributedTo ?agent .
   }
 }

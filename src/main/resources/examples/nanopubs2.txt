@@ -25,14 +25,14 @@ agent-version plot:
 data plot:
 
  o o o o o o  6 nanopub
- |/_/_/_/_/ 
- o            1 directSource
- |          
- |            0 indirectSource
- |          
- o            1 source
- |          
- o            1 agent
+ |/_/_/  |/ 
+ o       o    2 directSource
+ |       |  
+ |       |    0 indirectSource
+ |       |  
+ o       o    2 primarySource
+ |______/   
+ o            1 primaryAgent
 
 version-agent plot:
 

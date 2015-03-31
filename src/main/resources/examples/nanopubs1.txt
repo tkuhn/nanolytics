@@ -30,9 +30,9 @@ data plot:
  |            
  |              0 indirectSource
  |            
- o              1 source
+ o              1 primarySource
  |            
- o              1 agent
+ o              1 primaryAgent
 
 version-agent plot:
 

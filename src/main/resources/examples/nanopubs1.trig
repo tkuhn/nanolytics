@@ -22,7 +22,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -65,7 +65,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -108,7 +108,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -151,7 +151,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -194,7 +194,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -237,7 +237,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
@@ -280,7 +280,7 @@
 :provenance {
 	:assertion prov:wasDerivedFrom ex:dataset1 .
 	
-	ex:dataset1 prov:wasDerivedFrom ex:sourceDataset1 .
+	ex:dataset1 prov:hadPrimarySource ex:sourceDataset1 .
 	
 	ex:sourceDataset1 prov:wasAttributedTo ex:sourceAgent1 .
 }
