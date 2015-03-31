@@ -2,7 +2,7 @@ prefix np: <http://www.nanopub.org/nschema#>
 prefix prov: <http://www.w3.org/ns/prov#>
 prefix dct: <http://purl.org/dc/terms/>
 
-select ?nanopub ?process ?agent ?version ?codebase {
+select ?nanopub ?process ?agent ?version ?codebase where {
   graph ?headGraph {
     ?nanopub a np:Nanopublication .
     ?nanopub np:hasPublicationInfo ?publicationInfoGraph .
