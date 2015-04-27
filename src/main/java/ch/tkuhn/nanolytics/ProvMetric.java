@@ -3,11 +3,11 @@ package ch.tkuhn.nanolytics;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openrdf.OpenRDFException;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.QueryLanguage;
 import org.openrdf.query.TupleQuery;
@@ -16,44 +16,39 @@ import org.openrdf.repository.RepositoryConnection;
 
 import com.google.common.collect.ImmutableList;
 
-public class ProvNetwork {
+public class ProvMetric {
 
-	private List<ProvTrail> trails;
 	private List<String> varNames;
+	private Map<String,Object> metrics;
 
-	public ProvNetwork(RepositoryConnection conn, String queryName) throws IOException, OpenRDFException {
+	public ProvMetric(RepositoryConnection conn, String queryName) throws IOException, OpenRDFException {
 		init(conn, queryName);
 	}
 
 	private void init(RepositoryConnection conn, String queryName) throws IOException, OpenRDFException {
-		trails = new ArrayList<>();
-		File queryFile = NanolyticsUtils.getProvViewFile(queryName);
+		metrics = new HashMap<String,Object>();
+		File queryFile = NanolyticsUtils.getProvMetricFile(queryName);
 		varNames = new ArrayList<>();
 		String queryString = NanolyticsUtils.getQuery(queryFile, varNames);
 		varNames = ImmutableList.copyOf(varNames);
 		TupleQuery query = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 		TupleQueryResult result = query.evaluate();
-		while (result.hasNext()) {
-			BindingSet bs = result.next();
-			List<URI> uris = new ArrayList<>();
-			for (String n : varNames) {
-				if (bs.hasBinding(n)) {
-					Value v = bs.getBinding(n).getValue();
-					if (!(v instanceof URI)) {
-						throw new RuntimeException("Not a URI: " + v);
-					}
-					uris.add((URI) v);
-				} else {
-					uris.add(null);
-				}
-			}
-			trails.add(new ProvTrail(uris));
+		if (!result.hasNext()) {
+			throw new RuntimeException("Metric calculation failed");
 		}
-		trails = ImmutableList.copyOf(trails);
+		BindingSet bs = result.next();
+		if (result.hasNext()) {
+			throw new RuntimeException("Metric calculation led to multiple results");
+		}
+		for (String n : varNames) {
+			if (bs.hasBinding(n)) {
+				metrics.put(n, bs.getBinding(n).getValue());
+			}
+		}
 	}
 
-	public List<ProvTrail> getTrails() {
-		return trails;
+	public Object getMetric(String varName) {
+		return metrics.get(varName);
 	}
 
 	public List<String> getVarNames() {

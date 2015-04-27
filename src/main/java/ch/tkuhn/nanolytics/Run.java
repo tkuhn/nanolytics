@@ -16,6 +16,7 @@ import org.nanopub.NanopubImpl;
 import org.nanopub.NanopubUtils;
 import org.nanopub.extra.server.GetNanopub;
 import org.openrdf.OpenRDFException;
+import org.openrdf.model.Value;
 import org.openrdf.repository.sail.SailRepository;
 import org.openrdf.repository.sail.SailRepositoryConnection;
 import org.openrdf.sail.memory.MemoryStore;
@@ -29,8 +30,11 @@ public class Run {
 	@com.beust.jcommander.Parameter(description = "nanopubs", required = true)
 	private List<String> nanopubRefs = new ArrayList<String>();
 
-	@Parameter(names = "-p", description = "Provenance query to execute")
-	private String provQuery = "agent";
+	@Parameter(names = "-v", description = "Provenance views to generate (comma seperated)")
+	private String provViews;
+
+	@Parameter(names = "-m", description = "Provenance metrics to generate (comma seperated)")
+	private String provMetrics;
 
 	public static void main(String[] args) throws IOException, OpenRDFException, MalformedNanopubException {
 		Run obj = new Run();
@@ -82,9 +86,30 @@ public class Run {
 	}
 
 	public void run() throws IOException, OpenRDFException {
-		ProvNetwork n = new ProvNetwork(conn, provQuery);
-		AsciiPlot p = new AsciiPlot(n);
-		System.out.print(p.getPlotString());
+		if (provViews == null && provMetrics == null) {
+			throw new RuntimeException("No provenance views nor metrics specified");
+		}
+		if (provViews != null) {
+			for (String v : provViews.split(",")) {
+				ProvNetwork n = new ProvNetwork(conn, v);
+				AsciiPlot p = new AsciiPlot(n);
+				System.out.println(p.getPlotString());
+			}
+		}
+		if (provMetrics != null) {
+			for (String m : provMetrics.split(",")) {
+				ProvMetric p = new ProvMetric(conn, m);
+				for (String v : p.getVarNames()) {
+					Object metric = p.getMetric(v);
+					if (metric == null) {
+					} else if (metric instanceof Value) {
+						System.out.println(v + ": " + ((Value) metric).stringValue());
+					} else {
+						System.out.println(v + ": " + metric);
+					}
+				}
+			}
+		}
 	}
 
 }
