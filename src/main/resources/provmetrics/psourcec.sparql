@@ -2,29 +2,14 @@ prefix np: <http://www.nanopub.org/nschema#>
 prefix prov: <http://www.w3.org/ns/prov#>
 
 select (count(distinct ?primarySource) as ?primarySourceCount) where {
-  {
-
-    select ?nanopub ?directSource ?indirectSource ?primarySource ?primaryAgent where {
-      graph ?head {
-        ?nanopub a np:Nanopublication .
-        ?nanopub np:hasAssertion ?assertion .
-        ?nanopub np:hasProvenance ?provenance .
-      }
-      graph ?provenance {
-        optional {
-          ?assertion prov:wasDerivedFrom* / prov:hadPrimarySource ?primarySource .
-          optional {
-            ?primarySource prov:wasAttributedTo ?primaryAgent .
-          }
-        }
-        optional {
-          ?assertion prov:wasDerivedFrom ?directSource .
-          optional {
-            ?directSource prov:wasDerivedFrom ?indirectSource .
-          }
-        }
-      }
+  select ?primarySource where {
+    graph ?head {
+      ?nanopub a np:Nanopublication .
+      ?nanopub np:hasAssertion ?assertion .
+      ?nanopub np:hasProvenance ?provenance .
     }
-
+    graph ?provenance {
+      ?assertion prov:wasDerivedFrom* / prov:hadPrimarySource ?primarySource .
+    }
   }
 }
